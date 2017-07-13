@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ssusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
@@ -226,9 +226,10 @@ namespace gridMaster
                 //Other conditions to check like walls
                 if (retNode != null)
                 {
-                    if (retNode.isConnected(currentNode))
+                    if (!retNode.isConnected(currentNode))
                     {
                         UnityEngine.Debug.Log("("+currentNode.gridPositionX+","+currentNode.gridPositionZ+") is connected to "+"("+retNode.gridPositionX+","+retNode.gridPositionZ+")");
+                        retNode = null;
                     }
                 }
 

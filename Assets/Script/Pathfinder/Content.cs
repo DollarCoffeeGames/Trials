@@ -5,22 +5,22 @@ using UnityEngine;
 public class Content : MonoBehaviour {
 
     [SerializeField]
-    public bool isWalkable;
+    public bool isWalkable = true;
 
     [SerializeField]
-    public float movementWeight;
+    public float movementWeight = 0;
 
     [Header("Block walk direction")]
     [SerializeField]
-    public bool North;
+    public bool North = false;
 
     [SerializeField]
-    public bool South;
+    public bool South = false;
 
     [SerializeField]
-    public bool East;
+    public bool East = false;
 
     [SerializeField]
-    public bool West;
+    public bool West = false;
 
 }
