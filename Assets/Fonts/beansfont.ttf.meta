@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f8f54d27397f1be4ba1511909ffed5fb
+timeCreated: 1498610269
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Beans
+  fontNames:
+  - Beans
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

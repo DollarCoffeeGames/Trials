@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: da23288f2b301b1469cd094ce5546d61
+timeCreated: 1498610251
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Ignoreland A
+  fontNames:
+  - Ignoreland A
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

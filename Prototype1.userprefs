@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Misc/tileMap.txt">
+    <Files>
+      <File FileName="Assets/Script/Managers/GridMaster.cs" Line="237" Column="58" />
+      <File FileName="Assets/Script/Pathfinder/Pathfinding.cs" Line="2" Column="30" />
+      <File FileName="Assets/Misc/tileMap.txt" Line="3" Column="37" />
+      <File FileName="Assets/Misc/tileContent.txt" Line="1" Column="1" />
+      <File FileName="Assets/Misc/tileWalls.txt" Line="10" Column="43" />
+      <File FileName="Assets/Script/TileTemplate.cs" Line="1" Column="1" />
+      <File FileName="Assets/MonsterOrc.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Pathfinder/Node.cs" Line="82" Column="30" />
+      <File FileName="Assets/Script/Pathfinder/Heap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Pathfinder/PathfindingMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/trap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/mousePosition.cs" Line="16" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

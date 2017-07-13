@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a090f1b21a74f6a4a985529aa355291a
+timeCreated: 1498610197
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bad Boys
+  fontNames:
+  - Bad Boys
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
