@@ -107,7 +107,7 @@ public class mousePosition : MonoBehaviour
         {
             lastMonster.GetComponent<MonsterOrc>().curNode = new Stack<Node>(path);
 
-            Debug.Log("pt999 = " + lastMonster.GetComponent<MonsterOrc>().curNode.Count, lastMonster);
+            //Debug.Log("pt999 = " + lastMonster.GetComponent<MonsterOrc>().curNode.Count, lastMonster);
         }
 
         while (nodeList.Count > 0)

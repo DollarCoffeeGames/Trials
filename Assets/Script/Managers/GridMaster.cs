@@ -406,7 +406,7 @@ namespace gridMaster
 
             Debug.Log(posTrap);
 
-            if (this.mapGrid[(int)gridPos.x][(int)gridPos.z].Trap != null)
+            if (this.mapGrid[(int)gridPos.z][(int)gridPos.x].Trap != null)
             {
                 return true;
             }
@@ -456,7 +456,7 @@ namespace gridMaster
             {
                 for (int countX = 0; countX < size.x; countX++)
                 {
-                    if (this.mapGrid[(int)gridPos.x + countX][(int)gridPos.z + countY].Trap != null)
+                    if (this.mapGrid[(int)gridPos.z + countY][(int)gridPos.x + countX].Trap != null)
                     {
                         return true;
                     }  
@@ -464,7 +464,7 @@ namespace gridMaster
             }
 
             //check for objects in the current nodes
-            if (this.mapGrid[(int)gridPos.x][(int)gridPos.z].Trap != null)
+            if (this.mapGrid[(int)gridPos.z][(int)gridPos.x].Trap != null)
             {
                 return true;
             }
@@ -503,12 +503,12 @@ namespace gridMaster
             {
                 for (int countX = 0; countX < size.x; countX++)
                 {
-                    this.mapGrid[(int)gridPos.x + countX][(int)gridPos.z + countY].setTrap(trapObj, false);
+                    this.mapGrid[(int)gridPos.z + countY][(int)gridPos.x + countX].setTrap(trapObj, false);
                 }
             }
 
 
-            this.mapGrid[(int)gridPos.x][(int)gridPos.z].setTrap(trapObj, true);
+            this.mapGrid[(int)gridPos.z][(int)gridPos.x].setTrap(trapObj, true);
         }
 
         public Node GetNode(int positionX, int positionY, int positionZ)

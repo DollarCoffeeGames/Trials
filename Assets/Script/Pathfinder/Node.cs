@@ -123,6 +123,11 @@ namespace gridMaster
 
                 Content objData = content.GetComponent<Content>();
 
+                if (this.gridPositionX == 8 && this.gridPositionZ == 6)
+                {
+                    Debug.Log(this.South + " - " + this.North + " - " + this.East + " - " + this.West);
+                }
+
                 if(objData != null)
                 {
                     this.isWalkable = (objData.isWalkable && this.isWalkable);
@@ -149,14 +154,14 @@ namespace gridMaster
                 {
                     if (this.gridPositionZ > parentNode.gridPositionZ)
                     {
-                        if (this.South)
+                        if (this.South || parentNode.North)
                         {
                             return false;
                         }
                     }
                     else
                     {
-                        if (this.North)
+                        if (this.North || parentNode.South)
                         {
                             return false;
                         } 
@@ -164,16 +169,16 @@ namespace gridMaster
                 }
                 else if (this.gridPositionZ == parentNode.gridPositionZ)
                 {
-                    if (this.gridPositionX > parentNode.gridPositionX)
+                    if (this.gridPositionX < parentNode.gridPositionX)
                     {
-                        if (this.East)
+                        if (this.East || parentNode.West)
                         {
                             return false;
                         }
                     }
                     else
                     {
-                        if (this.West)
+                        if (this.West || parentNode.East)
                         {
                             return false;
                         } 
@@ -183,7 +188,7 @@ namespace gridMaster
                 {
                     float distX = parentNode.gridPositionX - this.gridPositionX;
 
-                    if (distX > 0)
+                    if (this.gridPositionX < parentNode.gridPositionX)
                     {
                         if (this.East)
                         {
@@ -199,7 +204,6 @@ namespace gridMaster
                     }
                 }
                     
-
                 return true;
             }
         }

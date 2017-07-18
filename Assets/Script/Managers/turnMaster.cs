@@ -15,17 +15,25 @@ public class turnMaster : MonoBehaviour {
     //Creates a class variable to keep track of GameManger
     static turnMaster _instance = null;
 
-    //List<charController1> charList;
+    List<PlayerTemplate> charList;
 
-    int turnCount = 0;
+    int m_turnCount = 0;
 
-    float startTurnTime = 0;
+    public int turnCount
+    {
+        get 
+        {
+            return m_turnCount;
+        }
+        private set
+        {
+            m_turnCount = value;
+        }
+    }
 
     public delegate void turnEvent(int curTurn);
 
     List<turnEvent> turnEventFunc;
-
-    AsyncOperation async;
 
 	// Use this for initialization
 	void Start () 
@@ -45,42 +53,22 @@ public class turnMaster : MonoBehaviour {
 
         turnEventFunc = new List<turnEvent>();
 	}
-
-    void Update()
-    {
-        /*if (gameEnded)
-        {
-            return;
-        }*/
-    }
 	
-    /*public int registerPlayer(charController1 charControl)
+    public int registerPlayer(PlayerTemplate charControl)
     {
         charList.Add(charControl);
 
-        Vector3 charPos = charControl.transform.position;
-
-        charPos.x = Random.Range(-6f, 120f);
-        charPos.z = 0;
-
-        charControl.transform.position = charPos;
-
         if (charList.Count == 1)
         {
-            this.focusCurrentPlayer();
-            this.updateCharCameraPos();
-            charControl.StartTurn();
+            charControl.startTurn();
         }
 
         return charList.Count - 1;
-    }*/
+    }
 
     public void moveTurn()
     {
         turnCount++;
-        //this.charList[turnCount % this.charList.Count].StartTurn();
-
-        startTurnTime = Time.time;
 
         foreach(turnEvent func in turnEventFunc)
         {
@@ -88,12 +76,12 @@ public class turnMaster : MonoBehaviour {
         }
     }
 
-    public bool currentTurn(int playerNum)
+    public bool isPlayerTurn(int playerNum)
     {
-        /*if ((turnCount % this.charList.Count) == playerNum)
+        if ((turnCount % this.charList.Count) == playerNum)
         {
             return true;
-        }*/
+        }
 
         return false;
     }

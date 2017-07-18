@@ -1,4 +1,4 @@
-﻿ssusing System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
@@ -228,7 +228,12 @@ namespace gridMaster
                 {
                     if (!retNode.isConnected(currentNode))
                     {
-                        UnityEngine.Debug.Log("("+currentNode.gridPositionX+","+currentNode.gridPositionZ+") is connected to "+"("+retNode.gridPositionX+","+retNode.gridPositionZ+")");
+
+                        if (retNode.gridPositionX == 8 && retNode.gridPositionZ == 6)
+                        {
+                            UnityEngine.Debug.Log("("+currentNode.gridPositionZ+", "+currentNode.gridPositionX+") not connected");
+                        }
+
                         retNode = null;
                     }
                 }
