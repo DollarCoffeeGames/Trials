@@ -76,6 +76,7 @@ namespace gridMaster
             public float hCost = 0;
             public float cCost = 0;
 
+            public int Depth = 0;
 
             public bool North;
             public bool South;

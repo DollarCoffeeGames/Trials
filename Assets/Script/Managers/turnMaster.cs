@@ -38,7 +38,6 @@ public class turnMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-
         //check if GameManager instance already exists in Scene
         if(instance)
         {
@@ -53,6 +52,10 @@ public class turnMaster : MonoBehaviour {
 
         turnEventFunc = new List<turnEvent>();
 	}
+
+    public void turnEventTest(int curTurn)
+    {
+    }
 	
     public int registerPlayer(PlayerTemplate charControl)
     {

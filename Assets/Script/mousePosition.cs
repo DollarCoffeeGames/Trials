@@ -105,7 +105,7 @@ public class mousePosition : MonoBehaviour
         Stack<Node> nodeList = new Stack<Node>(path);
         if (lastMonster)
         {
-            lastMonster.GetComponent<MonsterOrc>().curNode = new Stack<Node>(path);
+            lastMonster.GetComponent<MonsterOrc>().Path(path);
 
             //Debug.Log("pt999 = " + lastMonster.GetComponent<MonsterOrc>().curNode.Count, lastMonster);
         }
@@ -113,7 +113,7 @@ public class mousePosition : MonoBehaviour
         while (nodeList.Count > 0)
         {
             Node curNode = nodeList.Pop();
-            Debug.Log("Node - x:" + curNode.gridPositionX + " z: " + curNode.gridPositionZ+" Walkable: "+curNode.isWalkable, curNode.Tile);
+//            Debug.Log("Node - x:" + curNode.gridPositionX + " z: " + curNode.gridPositionZ+" Walkable: "+curNode.isWalkable+" Depth:"+curNode.Depth, curNode.Tile);
         }
     }
 

@@ -9,20 +9,37 @@ namespace gridMaster
     {
         public class Pathfinding
         {
+
+            public delegate void PathfindingJobComplete(Stack<Node> path);
+            public delegate void PathfindingWalkableJobComplete(List<Node> path);
+
             public volatile bool jobDone = false;
-            PathfindingMaster.PathfindingJobComplete completeCallbackFunc;
+            PathfindingJobComplete completeCallbackFunc;
+            PathfindingWalkableJobComplete completeCallbackFuncW;
             Stack<Node> lastPath;
+            List<Node>  lastWalkable;
 
             Node startPosition;
             Node finalPosition;
 
+            int searchDepth = 0;
+
             GridMaster gridMaster;
 
-            public Pathfinding(Node startNode, Node finalNode, PathfindingMaster.PathfindingJobComplete callback)
+            public Pathfinding(Node startNode, Node finalNode, Pathfinding.PathfindingJobComplete callback)
             {
                 startPosition = startNode;
                 finalPosition = finalNode;
                 completeCallbackFunc = callback;
+
+                gridMaster = GridMaster.instance;
+            }
+
+            public Pathfinding(Node startNode, int Depth, Pathfinding.PathfindingWalkableJobComplete callback)
+            {
+                startPosition = startNode;
+                searchDepth   = Depth;
+                completeCallbackFuncW = callback;
 
                 gridMaster = GridMaster.instance;
             }
@@ -32,10 +49,22 @@ namespace gridMaster
                 return findPathInternal(startNode, finalNode);
             }
 
+            public List<Node> findWalkableNodes(Node startNode, int Depth)
+            {
+                return findWalkableNodesInternal(startNode, Depth);
+            }
+
             public void findPath()
             {
                 jobDone = false;
-                lastPath = findPathInternal(startPosition, finalPosition);
+                if (searchDepth != 0)
+                {
+                    lastWalkable = findWalkableNodesInternal(startPosition, searchDepth);
+                }
+                else
+                {
+                    lastPath = findPathInternal(startPosition, finalPosition);
+                }
                 jobDone = true;
             }
 
@@ -45,6 +74,67 @@ namespace gridMaster
                 {
                     this.completeCallbackFunc(lastPath);
                 }
+
+                if (this.completeCallbackFuncW != null)
+                {
+                    this.completeCallbackFuncW(lastWalkable);
+                }
+            }
+
+            private List<Node> findWalkableNodesInternal(Node startNode, int Depth)
+            {
+
+                Stopwatch SW = new Stopwatch();
+                SW.Start();
+
+                //List of nodes to check and nodes already checkded
+                Heap<Node> openNodes = new Heap<Node>(gridMaster.maxSize);
+                List<Node> closedNodes = new List<Node>();
+
+                //Fist node is the start Node;
+                openNodes.Add(startNode);
+
+                int countTest = 0;
+
+                startNode.Depth = 0;
+
+                while (openNodes.Count > 0)
+                {
+                    Node currentNode = openNodes.RemoveFirst();
+                    closedNodes.Add(currentNode);
+
+                    foreach (Node neighbourNode in GetNeighbours(currentNode, false))
+                    {
+                        if (!closedNodes.Contains(neighbourNode))
+                        {
+                            float newMovementCostToNeighbour = currentNode.hCost + GetDistance(currentNode, neighbourNode);
+
+                            if (newMovementCostToNeighbour < neighbourNode.hCost || !openNodes.Contains(neighbourNode))
+                            {
+                                neighbourNode.gCost = newMovementCostToNeighbour;
+
+                                neighbourNode.Depth = currentNode.Depth + 1;
+
+                                neighbourNode.parentNode = currentNode;
+
+                                if (!openNodes.Contains(neighbourNode) && neighbourNode.Depth <= Depth)
+                                {
+                                    openNodes.Add(neighbourNode);
+                                    openNodes.UpdateItem(neighbourNode);
+                                }
+                            }
+                        }
+                    }
+
+                    countTest++;
+                }
+
+                SW.Stop();
+                UnityEngine.Debug.Log("Walkable Paths Found: "+ SW.ElapsedMilliseconds +" ms");
+              
+
+                return closedNodes;
+
             }
 
             private Stack<Node> findPathInternal(Node startNode, Node finalNode)
@@ -63,6 +153,8 @@ namespace gridMaster
                 openNodes.Add(startNode);
 
                 int countTest = 0;
+
+                startNode.Depth = 0;
 
                 while (openNodes.Count > 0)
                 {
@@ -87,6 +179,8 @@ namespace gridMaster
                             {
                                 neighbourNode.gCost = newMovementCostToNeighbour;
                                 neighbourNode.hCost = GetDistance(neighbourNode, finalNode);
+
+                                neighbourNode.Depth = currentNode.Depth + 1;
 
                                 neighbourNode.parentNode = currentNode;
 
