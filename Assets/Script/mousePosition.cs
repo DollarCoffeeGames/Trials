@@ -6,23 +6,29 @@ using gridMaster.Pathfinding;
 
 public class mousePosition : MonoBehaviour
 {
+
+    Unit currUnit;
+
+    [Header("Traps")]
     [SerializeField]
     GameObject[] trapList;
 
     [SerializeField]
     GameObject[] trapPrefab;
 
-    [SerializeField]
     GameObject currentTrap;
 
     int currentTrapNum;
     Vector3 originalTrapPos;
 
-    [SerializeField]
-    GameObject lastMonster;
+    Vector2 lastTrapSize    = Vector2.one;
+    Vector2 originalTrapSize = Vector2.one;
 
-    int lastTrapNumber = 0;
-    Vector2 lastTrapSize = Vector2.one;
+    bool canClick = true;
+    bool canRotate = true;
+    bool hasPath = false;
+
+    Node currNode;
 
     void FixedUpdate () 
     {    
@@ -34,10 +40,6 @@ public class mousePosition : MonoBehaviour
         {
             //draw invisible ray cast/vector
             Debug.DrawLine (ray.origin, hit.point);
-            //log hit area to the console
-            //Debug.Log(hit.point+" = Grid - "+GridMaster.instance.gridPosition(hit.point));
-
-            //Debug.Log(hit.transform.name, hit.transform.gameObject);
 
             if (currentTrap)
             {
@@ -52,79 +54,153 @@ public class mousePosition : MonoBehaviour
                     currentTrap.SendMessage("setStatus", false);
                 }
 
-                if (Input.GetButtonUp("Fire1"))
+                if (Input.GetButtonUp("Fire1") && this.canClick)
                 {
 
                     if (!GridMaster.instance.hasTrap(currentTrap.transform.position, this.lastTrapSize))
                     {
                         GameObject newTrap = Instantiate(trapPrefab[currentTrapNum], currentTrap.transform.position, currentTrap.transform.rotation);
-                        GridMaster.instance.setTrap(currentTrap.transform.position, newTrap, this.lastTrapSize);
+
+                        if (!newTrap.transform.CompareTag("Unit"))
+                        {
+                            GridMaster.instance.setTrap(currentTrap.transform.position, newTrap, this.lastTrapSize);
+                        }
+
+                        newTrap.GetComponent<Buildable>().playerId = turnMaster.instance.currentPlayerId();
 
                         currentTrap.SendMessage("setStatus", true);
                         currentTrap.transform.position = originalTrapPos;
+                        currentTrap.transform.rotation = Quaternion.identity;
                         currentTrap = null;
                         this.lastTrapSize = Vector2.one;
 
-                        if (lastTrapNumber == 3)
-                        {
-                            lastMonster = newTrap;
-                        }
+                        this.canClick = false;
+                        StartCoroutine(this.cooldownClick());
                     }
+                }
+                else if (Input.GetKeyUp(KeyCode.R) && this.canRotate)
+                {
+                    currentTrap.transform.Rotate(0, 90, 0);
+
+                    Vector2 newSize = this.originalTrapSize;
+
+                    Debug.Log((int)Mathf.Round(currentTrap.transform.eulerAngles.y));
+
+                    switch ((int)Mathf.Round(currentTrap.transform.eulerAngles.y))
+                    {
+                        case 90:
+                            newSize.y = -this.originalTrapSize.x;
+                            newSize.x = this.originalTrapSize.y;
+
+                            break;
+                        case -180:
+                            newSize.y = this.originalTrapSize.y;
+                            newSize.x = -this.originalTrapSize.x;
+
+                            break;
+                        case -90:
+                            newSize.y = this.originalTrapSize.x;
+                            newSize.x = -this.originalTrapSize.y;
+
+                            break;
+                    }
+
+                    this.lastTrapSize = newSize;
+                    this.canRotate = false;
+                    StartCoroutine(this.cooldownRotation());
                 }
             }
             else
             {
-                if (Input.GetButtonUp("Fire1"))
+                if (Input.GetButtonUp("Fire1") && this.canClick)
                 {
-                    Node endNode = GridMaster.instance.GetNodeByPosition(hit.point);
-                    Node startNode = GridMaster.instance.GetNodeByPosition(Vector3.zero);
-
-                    if (lastMonster)
+                    Debug.Log(hit.transform.tag, hit.transform.gameObject);
+                    if (hit.transform.CompareTag("Unit"))
                     {
-                        startNode = GridMaster.instance.GetNodeByPosition(lastMonster.transform.position);
+                        this.currUnit = hit.transform.gameObject.GetComponent<Unit>();
+                        this.currUnit.SelectUnit();
+                        this.hasPath = false;
+                    }
+                    else if (hit.transform.CompareTag("Tile"))
+                    {
+                        this.hasPath = true;
                     }
 
-                    PathfindingMaster.instance.RequestPath(startNode, endNode, setMonsterPath);
+                    this.canClick = false;
+                    StartCoroutine(this.cooldownClick());
+                }
+                else if(!this.hasPath && this.currUnit != null)
+                {
+                    Node endNode = GridMaster.instance.GetNodeByPosition(hit.point);
+
+                    /*if (currNode != endNode && this.currUnit.walkNodes.Contains(endNode))
+                    {
+                        if (this.currUnit != null)
+                        {
+                            Node startNode = GridMaster.instance.GetNodeByPosition(this.currUnit.transform.position);
+
+                            PathfindingMaster.instance.RequestPath(startNode, endNode, this.currUnit.SetPath);
+                        }
+
+                        currNode = endNode;
+                    }*/
+                }
+
+                if (this.currUnit != null)
+                {
+                    GridUIMaster.instance.destineNodeUI(GridMaster.instance.gridPosition(hit.point));
                 }
             }
         }
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if (currentTrap)
+            if (this.currentTrap)
             {
-                currentTrap.SendMessage("setStatus", true);
-                currentTrap.transform.position = originalTrapPos;
-                currentTrap = null;
+                this.currentTrap.SendMessage("setStatus", true);
+                this.currentTrap.transform.position = originalTrapPos;
+                this.currentTrap = null;
             }
-        }
-    }
-
-    public void setMonsterPath(Stack<Node> path)
-    {
-        Stack<Node> nodeList = new Stack<Node>(path);
-        if (lastMonster)
-        {
-            lastMonster.GetComponent<MonsterOrc>().Path(path);
-
-            //Debug.Log("pt999 = " + lastMonster.GetComponent<MonsterOrc>().curNode.Count, lastMonster);
-        }
-
-        while (nodeList.Count > 0)
-        {
-            Node curNode = nodeList.Pop();
-//            Debug.Log("Node - x:" + curNode.gridPositionX + " z: " + curNode.gridPositionZ+" Walkable: "+curNode.isWalkable+" Depth:"+curNode.Depth, curNode.Tile);
+            else if(this.currUnit)
+            {
+                this.currUnit = null;
+                GridUIMaster.instance.clearGrid();
+            }
         }
     }
 
     public void useTrap(int trapNumber)
     {
-        originalTrapPos = trapList[trapNumber].transform.position;
-        currentTrapNum = trapNumber;
-        currentTrap = trapList[trapNumber];
+        this.originalTrapPos = trapList[trapNumber].transform.position;
+        this.currentTrapNum = trapNumber;
+        this.currentTrap = trapList[trapNumber];
 
-        lastTrapSize = trapList[trapNumber].GetComponent<trap>().size;
+        this.lastTrapSize     = trapList[trapNumber].GetComponent<Buildable>().size;
+        this.originalTrapSize = lastTrapSize;
 
-        lastTrapNumber = trapNumber;
+        if (this.currUnit)
+        {
+            this.currUnit = null;
+            GridUIMaster.instance.clearGrid();
+        }
+    }
+
+    public void moveUnit()
+    {
+        GridUIMaster.instance.clearGrid();
+//        this.currUnit.StartMove();
+        this.currUnit = null;
+    }
+
+    IEnumerator cooldownClick()
+    {
+        yield return new WaitForSeconds(0.5f);
+        this.canClick = true;
+    }
+
+    IEnumerator cooldownRotation()
+    {
+        yield return new WaitForSeconds(0.5f);
+        this.canRotate = true;
     }
 }

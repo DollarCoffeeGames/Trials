@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using gridMaster.Pathfinding;
 
-public abstract class Unit : Buildable {
-
+public abstract class Unit : Buildable 
+{
     // Contains the current position (In Unity coordinates) of this unit
     protected Vector3 currentPos;
     // Contains the current Board Node this unit is occupying
@@ -56,5 +56,9 @@ public abstract class Unit : Buildable {
     public void SetPath(Stack<Node> path)
     {
         this.path = path;
+    }
+
+    override public void SelectUnit()
+    {
     }
 }

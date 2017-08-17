@@ -13,9 +13,6 @@ public class ControlMaster : MonoBehaviour {
     //Creates a class variable to keep track of GameManger
     static ControlMaster _instance = null;
 
-    [SerializeField]
-    public LineRenderer pathRender;
-
 	// Use this for initialization
 	void Start () 
     {

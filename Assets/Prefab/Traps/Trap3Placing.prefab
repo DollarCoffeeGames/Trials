@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4966500746684888}
-  - component: {fileID: 111416953387021714}
   m_Layer: 0
   m_Name: Pf_Trap_Needle
   m_TagString: Untagged
@@ -53,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696934314139996}
   - component: {fileID: 114742700166522134}
+  - component: {fileID: 95438581173003394}
   m_Layer: 0
   m_Name: Trap3Placing
   m_TagString: Untagged
@@ -163,6 +163,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23910158675949454
 MeshRenderer:
@@ -194,6 +195,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33761153584167764
 MeshFilter:
@@ -221,24 +223,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.52995527, y: 0.5085304, z: 0.5162337}
   m_Center: {x: 0.0019949228, y: 0.24579579, z: -0.002992615}
---- !u!111 &111416953387021714
-Animation:
+--- !u!95 &95438581173003394
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1305948957603220}
+  m_GameObject: {fileID: 1669185577836990}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 5b338c3066ff22540915b5969709eb8a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 9cb97650810bcdb478157897cc0725ed, type: 2}
-  - {fileID: 7400000, guid: 82276ad1fa0134f4d916ecaa765f6322, type: 2}
-  - {fileID: 7400000, guid: 2badb873ba409044db8e5b1246871dd2, type: 2}
-  - {fileID: 7400000, guid: 5b338c3066ff22540915b5969709eb8a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7eda2a3dc28934fa99c52378636c452c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114742700166522134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,3 +257,4 @@ MonoBehaviour:
   allowed: {fileID: 2100000, guid: d718b83d1e24540779a6a4ed9ad9d7fa, type: 2}
   notAllowed: {fileID: 2100000, guid: 36fadb55654d849deb7d6a449673314e, type: 2}
   size: {x: 1, y: 1}
+  resoureSpent: 0

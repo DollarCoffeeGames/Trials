@@ -7,7 +7,9 @@ public class UITestManager : MonoBehaviour
 {
     [SerializeField]
     Text turnLbl;
-	
+	[SerializeField]
+	Text resourceLbl;
+
     // Use this for initialization
 	void Start () 
     {
@@ -17,4 +19,8 @@ public class UITestManager : MonoBehaviour
     {
         this.turnLbl.text = turnMaster.instance.turnCount.ToString();
     }
+	void Update ()
+	{
+		//this.resourceLbl.text = turnMaster.instance.resource.ToString();
+	}
 }

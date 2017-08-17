@@ -77,6 +77,7 @@ namespace gridMaster
         int currentColumn;
 
 
+
         List<List<Node>> Grid;
 
         List<List<Node>> mapGrid;
@@ -112,10 +113,12 @@ namespace gridMaster
 
                 for (int countX = 0; countX < columnCount.x; countX++)
                 {
-                    Node currentNode = new Node();
 
-                    currentNode.Tile = createTile(countX, countY, (countY + countX) % 2, false);
-                
+                    GameObject tempTile = createTile(countX, countY, (countY + countX) % 2, false);
+
+                    Node currentNode = tempTile.AddComponent<Node>();
+
+                    currentNode.Tile = tempTile;
                     currentNode.Tile.transform.SetParent(this.Board.transform);
 
                     currentNode.Tile.name = "Tile_" + countY + "_" + countX;
@@ -216,23 +219,30 @@ namespace gridMaster
 
                 foreach (string tile in tiles)
                 {
+                    GameObject tempTile;
 
-                    Node currentNode = new Node();
+                    if (tile != "-1")
+                    {
+                        tempTile = createTile(column, row, int.Parse(tile));
+                    }
+                    else
+                    {
+                        tempTile = createEmpty(column, row, int.Parse(tile));
+                    }
+
+                    Node currentNode = tempTile.AddComponent<Node>();
+
+                    if (tile == "-1")
+                    {
+                        currentNode.isWalkable = false;
+                    }
+
+                    currentNode.Tile = tempTile;
 
                     currentNode.gridPositionX = column;
                     currentNode.gridPositionZ = row;
 
                     this.mapGrid[row].Add(currentNode);
-
-                    if (tile != "-1")
-                    {
-                        currentNode.Tile = createTile(column, row, int.Parse(tile));
-                    }
-                    else
-                    {
-                        currentNode.Tile = createEmpty(column, row, int.Parse(tile));
-                        currentNode.isWalkable = false;
-                    }
 
                     currentNode.Tile.transform.SetParent(BoardLevel.transform);
                     currentNode.Tile.name = "Tile_" + row + "_" + column;

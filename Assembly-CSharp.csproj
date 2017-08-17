@@ -52,9 +52,27 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ControlMaster.cs" />
+     <Compile Include="Assets\GridUIMaster.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\AlwaysFace.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\CameraScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\DestroyAfter.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\GUICameraScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\GUIHPParticleScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\GUIProjectileSettingsScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\HPParticleScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\HPScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\PlayerCollisionScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\ProjectileScript.cs" />
+     <Compile Include="Assets\HPParticle\Scripts\ProjectileShooterScript.cs" />
+     <Compile Include="Assets\Script\AI\AILeader.cs" />
+     <Compile Include="Assets\Script\AI\AIManager.cs" />
+     <Compile Include="Assets\Script\AI\AIUnit.cs" />
+     <Compile Include="Assets\Script\Board\Hotpoint.cs" />
+     <Compile Include="Assets\Script\Board\Spawnpoint.cs" />
      <Compile Include="Assets\Script\Buildable\Buildable.cs" />
      <Compile Include="Assets\Script\Buildable\Unit.cs" />
-     <Compile Include="Assets\Script\Managers\AIManager.cs" />
+     <Compile Include="Assets\Script\Floor_Saw.cs" />
+     <Compile Include="Assets\Script\Ftrap.cs" />
      <Compile Include="Assets\Script\Managers\BoardManager.cs" />
      <Compile Include="Assets\Script\Managers\GridMaster.cs" />
      <Compile Include="Assets\Script\Managers\turnMaster.cs" />
@@ -89,6 +107,8 @@
      <Compile Include="Assets\Unity Samples\Scripts\TiltWindow.cs" />
      <None Include="Assets\UI\Pause Menu Assets\Fonts\open-sans\Apache License.txt" />
      <None Include="Assets\Misc\tileTime.txt" />
+     <None Include="Assets\Shaders\NewSurfaceShader.shader" />
+     <None Include="Assets\Shaders\Border.shader" />
      <None Include="Assets\Misc\tileMap.txt" />
      <None Include="Assets\Unity Samples\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\Unity Samples\Textures and Sprites\SF UI\Background\LICENSE.txt" />
@@ -97,6 +117,7 @@
      <None Include="Assets\Unity Samples\Materials\UI-Default-No-Alpha.shader" />
      <None Include="Assets\UI\Pause Menu Assets\Fonts\exo\SIL Open Font License.txt" />
      <None Include="Assets\SFX\Menu theme\Note from author.txt" />
+     <None Include="Assets\HPParticle\Third Person Character\Third Person Character Guidelines.txt" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>

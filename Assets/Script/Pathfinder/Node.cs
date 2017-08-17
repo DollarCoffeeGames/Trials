@@ -6,7 +6,7 @@ namespace gridMaster
 {
     namespace Pathfinding
     {
-        public class Node: IHeapItem<Node>
+        public class Node: MonoBehaviour, IHeapItem<Node>
         {
             List<GameObject> TileContent = new List<GameObject>();
 
@@ -19,8 +19,18 @@ namespace gridMaster
                 {
                     this.m_Tile = value;
                     this.worldPosition = value.transform.position;
+
+                    Transform tileHighlightTrans = this.m_Tile.transform.Find("TileHighlight");
+
+                    if(tileHighlightTrans != null)
+                    {
+                        tileHighLigh = tileHighlightTrans.GetComponent<Renderer>();
+                    }
                 }
             }
+
+            [HideInInspector]
+            public Renderer tileHighLigh;
 
             GameObject m_Trap = null;
 
@@ -72,8 +82,11 @@ namespace gridMaster
             public float gridPositionX;
             public float gridPositionZ;
 
+            [HideInInspector]
             public float gCost = 0;
+            [HideInInspector]
             public float hCost = 0;
+
             public float cCost = 0;
 
             public int Depth = 0;
@@ -82,18 +95,9 @@ namespace gridMaster
             public bool South;
             public bool East;
             public bool West;
-
-            public float fullCost
-            {
-                get
-                {
-                    return this.gCost + this.hCost + this.cCost;
-                }
-            }
-
-            public Node parentNode = null;
-            public List<Node> Neighbours = new List<Node>();
             public bool m_isWalkable = true;
+
+            public bool changed;
 
             public bool isWalkable
             {
@@ -110,7 +114,18 @@ namespace gridMaster
                 {
                     m_isWalkable = value;
                 }
-                    
+
+            }
+
+            [HideInInspector]
+            public Node parentNode = null;
+
+            public float fullCost
+            {
+                get
+                {
+                    return this.gCost + this.hCost + this.cCost;
+                }
             }
 
             public void addContent(GameObject content)
@@ -124,10 +139,6 @@ namespace gridMaster
 
                 Content objData = content.GetComponent<Content>();
 
-                if (this.gridPositionX == 8 && this.gridPositionZ == 6)
-                {
-                    Debug.Log(this.South + " - " + this.North + " - " + this.East + " - " + this.West);
-                }
 
                 if(objData != null)
                 {

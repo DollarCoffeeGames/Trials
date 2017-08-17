@@ -15,6 +15,10 @@ public class turnMaster : MonoBehaviour {
     //Creates a class variable to keep track of GameManger
     static turnMaster _instance = null;
 
+    [SerializeField]
+    [Range(0f, 1000f)]
+    public int playerResourceAmount;
+
     List<PlayerTemplate> charList;
 
     int m_turnCount = 0;
@@ -50,12 +54,9 @@ public class turnMaster : MonoBehaviour {
             instance = this;
         }
 
+        charList = new List<PlayerTemplate>();
         turnEventFunc = new List<turnEvent>();
 	}
-
-    public void turnEventTest(int curTurn)
-    {
-    }
 	
     public int registerPlayer(PlayerTemplate charControl)
     {
@@ -77,6 +78,13 @@ public class turnMaster : MonoBehaviour {
         {
             func(this.turnCount);
         }
+
+        charList[turnCount % this.charList.Count].startTurn();
+    }
+
+    public void setPlayerResource(int playerId, int amountResource)
+    {
+        this.charList[playerId].resourceAmount -= amountResource;
     }
 
     public bool isPlayerTurn(int playerNum)
@@ -87,6 +95,11 @@ public class turnMaster : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public int currentPlayerId()
+    {
+        return (turnCount % this.charList.Count);
     }
 
     public int registerTurnEvent(turnEvent func)

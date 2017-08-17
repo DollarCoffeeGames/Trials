@@ -608,9 +608,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4080522548712230}
   - component: {fileID: 114547352454910632}
+  - component: {fileID: 65989813164253010}
   m_Layer: 0
   m_Name: Monster1
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,7 +724,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1787367572916926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.74, y: 10.33, z: -3.14}
+  m_LocalPosition: {x: 30.9713, y: 6.4266653, z: 2.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4085831182027958}
@@ -793,7 +794,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020811465731998}
-  m_LocalRotation: {x: -0.562547, y: -0.064057484, z: 0.82167226, w: -0.06551592}
+  m_LocalRotation: {x: -0.56254697, y: -0.06405748, z: 0.82167214, w: -0.06551591}
   m_LocalPosition: {x: 0.59069765, y: -0.50653255, z: 1.2841672}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1}
   m_Children:
@@ -1235,6 +1236,18 @@ Transform:
   m_Father: {fileID: 4085831182027958}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65989813164253010
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787367572916926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2, z: 3}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95167873002348306
 Animator:
   serializedVersion: 3
@@ -1263,6 +1276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d58afbd0ae45c1a80cb5b8477321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkNodes: []
+  Movement: 10
+  Speed: 6
 --- !u!137 &137086472881285498
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1293,6 +1309,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
@@ -1362,6 +1379,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0

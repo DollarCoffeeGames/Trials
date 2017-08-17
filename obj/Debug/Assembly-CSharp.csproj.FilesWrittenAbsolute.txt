@@ -19,3 +19,9 @@
 /Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/Facebook.Unity.Settings.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/UnityEngine.TestRunner.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/nunit.framework.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/UnityEngine.Timeline.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/ExCSS.Unity.dll
+/Users/juliocesarsoaresfalconecunha/Documents/College/Final/Prototype/Prototype1/Temp/bin/Debug/Unity.Legacy.NRefactory.dll
