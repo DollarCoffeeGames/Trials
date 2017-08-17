@@ -1276,7 +1276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d58afbd0ae45c1a80cb5b8477321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkNodes: []
+  playerId: 0
+  size: {x: 1, y: 1}
+  walkableNodes: []
   Movement: 10
   Speed: 6
 --- !u!137 &137086472881285498

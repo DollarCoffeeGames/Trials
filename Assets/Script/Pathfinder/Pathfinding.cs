@@ -145,6 +145,12 @@ namespace gridMaster
                 //List of nodes to the destination
                 Stack<Node> finalPath = new Stack<Node>();
 
+                if (startNode == null || finalNode == null)
+                {
+                    UnityEngine.Debug.LogWarning("Start Node or Final node empty!");
+                    return finalPath;
+                }
+
                 //List of nodes to check and nodes already checkded
                 Heap<Node> openNodes = new Heap<Node>(gridMaster.maxSize);
                 List<Node> closedNodes = new List<Node>();

@@ -15,8 +15,8 @@ public class trap : Buildable
     [SerializeField]
     Material notAllowed;
 
-    [SerializeField]
-    public Vector2 size = Vector2.one;
+    /*[SerializeField]
+    public Vector2 size = Vector2.one;*/
 
     bool curStatus = true;
 

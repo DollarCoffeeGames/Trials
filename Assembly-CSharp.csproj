@@ -51,8 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ControlMaster.cs" />
-     <Compile Include="Assets\GridUIMaster.cs" />
      <Compile Include="Assets\HPParticle\Scripts\AlwaysFace.cs" />
      <Compile Include="Assets\HPParticle\Scripts\CameraScript.cs" />
      <Compile Include="Assets\HPParticle\Scripts\DestroyAfter.cs" />
@@ -74,7 +72,9 @@
      <Compile Include="Assets\Script\Floor_Saw.cs" />
      <Compile Include="Assets\Script\Ftrap.cs" />
      <Compile Include="Assets\Script\Managers\BoardManager.cs" />
+     <Compile Include="Assets\Script\Managers\ControlMaster.cs" />
      <Compile Include="Assets\Script\Managers\GridMaster.cs" />
+     <Compile Include="Assets\Script\Managers\GridUIMaster.cs" />
      <Compile Include="Assets\Script\Managers\turnMaster.cs" />
      <Compile Include="Assets\Script\mousePosition.cs" />
      <Compile Include="Assets\Script\Pathfinder\Content.cs" />

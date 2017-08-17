@@ -133,7 +133,7 @@ public class mousePosition : MonoBehaviour
                 {
                     Node endNode = GridMaster.instance.GetNodeByPosition(hit.point);
 
-                    /*if (currNode != endNode && this.currUnit.walkNodes.Contains(endNode))
+                    if (currNode != endNode && this.currUnit.walkableNodes.Contains(endNode))
                     {
                         if (this.currUnit != null)
                         {
@@ -143,7 +143,7 @@ public class mousePosition : MonoBehaviour
                         }
 
                         currNode = endNode;
-                    }*/
+                    }
                 }
 
                 if (this.currUnit != null)
@@ -188,7 +188,7 @@ public class mousePosition : MonoBehaviour
     public void moveUnit()
     {
         GridUIMaster.instance.clearGrid();
-//        this.currUnit.StartMove();
+        this.currUnit.StartMove();
         this.currUnit = null;
     }
 

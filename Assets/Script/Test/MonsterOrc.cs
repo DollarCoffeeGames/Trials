@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using gridMaster.Pathfinding;
 
-public class MonsterOrc : MonoBehaviour 
+public class MonsterOrc : Unit 
 {
-    public Stack<Node> curNode;
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        if (curNode != null)
+        if (this.shortPath.Count > 0)
         {
-            Stack<Node> tempNode = new Stack<Node>(curNode);
 
             Node previousNode = null;
 
-            while (tempNode.Count > 0)
+            for(int count = 0; count < this.shortPath.Count; count++)
             {
-                Node curNode = tempNode.Pop();
+                Node curNode = this.shortPath[count];
 
                 if (previousNode != null)
                 {
@@ -44,13 +42,13 @@ public class MonsterOrc : MonoBehaviour
 
     void Start()
     {
-        curNode = new Stack<Node>();
     }
 
-    void Path(Stack<Node> nodeList)
+    void Update()
     {
-        Debug.Log("Pt198 - "+nodeList.Count);
-        curNode = nodeList;
-        Debug.Log("Pt198 - "+curNode.Count);
+        if (this.startMovement)
+        {
+            this.Move();
+        }
     }
 }
