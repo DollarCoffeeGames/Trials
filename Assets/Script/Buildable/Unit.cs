@@ -16,7 +16,7 @@ public abstract class Unit : Buildable
     // Contains the path this unit will take when moving
     protected Stack<Node> path = null;
     // Contains the short path using path as base
-    protected List<Node> shortPath = new List<Node>();
+    public List<Node> shortPath = new List<Node>();
     // List of all walkable nodes
     public List<Node> walkableNodes = new List<Node>();
     // Contains the basic attack value of this unit
@@ -47,8 +47,9 @@ public abstract class Unit : Buildable
     // >0   Radius of vision around self
     protected int SightRange;
 
-    protected bool startMovement = false; 
-    protected bool updateNode    = false; 
+    public bool startMovement = false; 
+    public bool unitMoved     = false;
+    protected bool updateNode = false; 
 
     Node targetNode;
 
@@ -69,6 +70,7 @@ public abstract class Unit : Buildable
         this.indexPath = 0;
         this.currentNode = this.shortPath[0];
         this.startMovement = true;
+        this.unitMoved = true;
     }
 
     // Method which *executes* the determined movement of a unit.

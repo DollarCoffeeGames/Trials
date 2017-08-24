@@ -84,8 +84,6 @@ namespace AI
         void Start () 
         {
             base.Start();
-
-            this.playerId = turnMaster.instance.registerPlayer(this);
         }
     	
     	// Update is called once per frame
@@ -149,8 +147,6 @@ namespace AI
             for (int count = 0; count < unitsToCreate; count++)
             {
                 GameObject unit = Instantiate(this.unitPrefab[this.currentUnit], transform);
-
-                Debug.Log(this.leaders.Count + " - " + currentGroup+" - "+this.leaders[currentGroup].isFull()+" - "+this.leaders[currentGroup].leader);
 
                 if (this.leaders[currentGroup].isFull() && this.leaders[currentGroup].leader != null)
                 {

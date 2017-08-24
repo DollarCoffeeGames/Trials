@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ActionButton.cs" />
      <Compile Include="Assets\HPParticle\Scripts\AlwaysFace.cs" />
      <Compile Include="Assets\HPParticle\Scripts\CameraScript.cs" />
      <Compile Include="Assets\HPParticle\Scripts\DestroyAfter.cs" />
@@ -75,13 +76,14 @@
      <Compile Include="Assets\Script\Managers\ControlMaster.cs" />
      <Compile Include="Assets\Script\Managers\GridMaster.cs" />
      <Compile Include="Assets\Script\Managers\GridUIMaster.cs" />
+     <Compile Include="Assets\Script\Managers\mousePosition.cs" />
      <Compile Include="Assets\Script\Managers\turnMaster.cs" />
-     <Compile Include="Assets\Script\mousePosition.cs" />
      <Compile Include="Assets\Script\Pathfinder\Content.cs" />
      <Compile Include="Assets\Script\Pathfinder\Heap.cs" />
      <Compile Include="Assets\Script\Pathfinder\Node.cs" />
      <Compile Include="Assets\Script\Pathfinder\Pathfinding.cs" />
      <Compile Include="Assets\Script\Pathfinder\PathfindingMaster.cs" />
+     <Compile Include="Assets\Script\Players\PlayerActions.cs" />
      <Compile Include="Assets\Script\Players\PlayerTemplate.cs" />
      <Compile Include="Assets\Script\Test\MonsterOrc.cs" />
      <Compile Include="Assets\Script\Test\UITestManager.cs" />

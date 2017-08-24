@@ -74,6 +74,8 @@ public class mousePosition : MonoBehaviour
                         currentTrap = null;
                         this.lastTrapSize = Vector2.one;
 
+                        turnMaster.instance.addAction(PlayerActions.PlayerAction.Trap, 25, newTrap);
+
                         this.canClick = false;
                         StartCoroutine(this.cooldownClick());
                     }
@@ -114,16 +116,21 @@ public class mousePosition : MonoBehaviour
             {
                 if (Input.GetButtonUp("Fire1") && this.canClick)
                 {
-                    Debug.Log(hit.transform.tag, hit.transform.gameObject);
                     if (hit.transform.CompareTag("Unit"))
                     {
-                        this.currUnit = hit.transform.gameObject.GetComponent<Unit>();
-                        this.currUnit.SelectUnit();
-                        this.hasPath = false;
+                        Unit tempUnit = hit.transform.gameObject.GetComponent<Unit>();
+
+                        if (tempUnit.actionDone)
+                        {
+                            this.currUnit = tempUnit;
+                            this.currUnit.SelectUnit();
+                            this.hasPath = false;
+                        }
                     }
                     else if (hit.transform.CompareTag("Tile"))
                     {
                         this.hasPath = true;
+                        turnMaster.instance.addAction(PlayerActions.PlayerAction.CharMovement, 10, this.currUnit.gameObject);
                     }
 
                     this.canClick = false;

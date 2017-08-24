@@ -31,6 +31,8 @@ public abstract class Buildable : MonoBehaviour {
     // 1    Blocks movement, LOS, and ranged attacks
     protected int Obstacle;
 
+    public bool actionDone = false;
+
     [SerializeField]
     public Vector2 size = Vector2.one;
 
