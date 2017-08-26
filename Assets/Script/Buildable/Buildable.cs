@@ -15,6 +15,8 @@ public abstract class Buildable : MonoBehaviour {
 
     */
 
+    public int playerId;
+
     // Returns true if the object is alive, false otherwise
     protected bool Alive;
     // Returns true if the object is visible, false otherwise
@@ -29,9 +31,18 @@ public abstract class Buildable : MonoBehaviour {
     // 1    Blocks movement, LOS, and ranged attacks
     protected int Obstacle;
 
+    public bool actionDone = false;
+
+    [SerializeField]
+    public Vector2 size = Vector2.one;
+
     // Applies the current defense of the object to an amount of damage.
     public virtual void ApplyDefense(int damage)
     {
         Debug.Log("Applying Buildable Defense method.");
     }
+
+    abstract public void SelectUnit();
+
+
 }

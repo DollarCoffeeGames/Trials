@@ -24,8 +24,6 @@ namespace gridMaster
             List<Pathfinding> currentJobs;
             List<Pathfinding> todoJobs;
 
-            public delegate void PathfindingJobComplete(Stack<Node> path);
-
         	// Use this for initialization
             void Start () 
             {
@@ -75,9 +73,15 @@ namespace gridMaster
                 }
         	}
 
-            public void RequestPath(Node startNode, Node endNode, PathfindingMaster.PathfindingJobComplete callback)
+            public void RequestPath(Node startNode, Node endNode, Pathfinding.PathfindingJobComplete callback)
             {
                 Pathfinding newJob = new Pathfinding(startNode, endNode, callback);
+                todoJobs.Add(newJob);
+            }
+
+            public void RequestWalkableNodes(Node startNode, int Depth, Pathfinding.PathfindingWalkableJobComplete callback)
+            {
+                Pathfinding newJob = new Pathfinding(startNode, Depth, callback);
                 todoJobs.Add(newJob);
             }
         }

@@ -6,7 +6,7 @@ namespace gridMaster
 {
     namespace Pathfinding
     {
-        public class Node: IHeapItem<Node>
+        public class Node: MonoBehaviour, IHeapItem<Node>
         {
             List<GameObject> TileContent = new List<GameObject>();
 
@@ -19,8 +19,18 @@ namespace gridMaster
                 {
                     this.m_Tile = value;
                     this.worldPosition = value.transform.position;
+
+                    Transform tileHighlightTrans = this.m_Tile.transform.Find("TileHighlight");
+
+                    if(tileHighlightTrans != null)
+                    {
+                        tileHighLigh = tileHighlightTrans.GetComponent<Renderer>();
+                    }
                 }
             }
+
+            [HideInInspector]
+            public Renderer tileHighLigh;
 
             GameObject m_Trap = null;
 
@@ -72,27 +82,22 @@ namespace gridMaster
             public float gridPositionX;
             public float gridPositionZ;
 
+            [HideInInspector]
             public float gCost = 0;
+            [HideInInspector]
             public float hCost = 0;
+
             public float cCost = 0;
 
+            public int Depth = 0;
 
             public bool North;
             public bool South;
             public bool East;
             public bool West;
-
-            public float fullCost
-            {
-                get
-                {
-                    return this.gCost + this.hCost + this.cCost;
-                }
-            }
-
-            public Node parentNode = null;
-            public List<Node> Neighbours = new List<Node>();
             public bool m_isWalkable = true;
+
+            public bool changed;
 
             public bool isWalkable
             {
@@ -109,7 +114,18 @@ namespace gridMaster
                 {
                     m_isWalkable = value;
                 }
-                    
+
+            }
+
+            [HideInInspector]
+            public Node parentNode = null;
+
+            public float fullCost
+            {
+                get
+                {
+                    return this.gCost + this.hCost + this.cCost;
+                }
             }
 
             public void addContent(GameObject content)
@@ -122,6 +138,7 @@ namespace gridMaster
                 }
 
                 Content objData = content.GetComponent<Content>();
+
 
                 if(objData != null)
                 {
@@ -149,14 +166,14 @@ namespace gridMaster
                 {
                     if (this.gridPositionZ > parentNode.gridPositionZ)
                     {
-                        if (this.South)
+                        if (this.South || parentNode.North)
                         {
                             return false;
                         }
                     }
                     else
                     {
-                        if (this.North)
+                        if (this.North || parentNode.South)
                         {
                             return false;
                         } 
@@ -164,16 +181,16 @@ namespace gridMaster
                 }
                 else if (this.gridPositionZ == parentNode.gridPositionZ)
                 {
-                    if (this.gridPositionX > parentNode.gridPositionX)
+                    if (this.gridPositionX < parentNode.gridPositionX)
                     {
-                        if (this.East)
+                        if (this.East || parentNode.West)
                         {
                             return false;
                         }
                     }
                     else
                     {
-                        if (this.West)
+                        if (this.West || parentNode.East)
                         {
                             return false;
                         } 
@@ -183,7 +200,7 @@ namespace gridMaster
                 {
                     float distX = parentNode.gridPositionX - this.gridPositionX;
 
-                    if (distX > 0)
+                    if (this.gridPositionX < parentNode.gridPositionX)
                     {
                         if (this.East)
                         {
@@ -199,7 +216,6 @@ namespace gridMaster
                     }
                 }
                     
-
                 return true;
             }
         }
