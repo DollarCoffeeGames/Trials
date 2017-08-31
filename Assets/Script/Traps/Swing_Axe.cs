@@ -50,10 +50,10 @@ public class Swing_Axe : Buildable {
 
 		if (swingOn) {
 			if (swingLeft) {
-				m_moveAxe.transform.Rotate (Vector3.forward * speed * Time.deltaTime);
+				m_moveAxe.transform.Rotate (Vector3.forward * speed * Time.fixedUnscaledDeltaTime);
 			}
 			if (!swingLeft) {
-				m_moveAxe.transform.Rotate (Vector3.forward * -speed * Time.deltaTime);
+				m_moveAxe.transform.Rotate (Vector3.forward * -speed * Time.fixedUnscaledDeltaTime);
 			}
 		} 
 	}
@@ -92,14 +92,10 @@ public class Swing_Axe : Buildable {
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from swinging axe trap");
 			swingOn = true;
+			Invoke ("Destroy", 3.2f);
 		}
 	}
-	public void OnTriggerExit (Collider c) {
-		if (c.gameObject.CompareTag ("Unit")) {
-			Invoke ("Destroy", 3.0f);
-		}
-	}
-
+		
 	void Destroy () {
 		Destroy (gameObject);
 	}

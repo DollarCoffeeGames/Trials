@@ -45,7 +45,7 @@ public class Floor_Saw : Buildable
 	{
 		if (startspin) 
         {
-			saw.transform.Rotate (Vector3.forward, speed * Time.deltaTime);
+			saw.transform.Rotate (Vector3.forward, speed * Time.fixedUnscaledDeltaTime);
 		}
 	}
 		public void testTurnCount (int turn)
@@ -87,26 +87,22 @@ public class Floor_Saw : Buildable
 			Debug.Log ("Monster is taking damage from saw trap");
 			startspin = true;
 			Sparks ();
+			Invoke ("Destroy", 3.2f);
 		}
 		}
 		public void OnTriggerExit (Collider c)
 		{
 			if (c.gameObject.CompareTag ("Unit")) {
 			Sparks ();	
-			Invoke ("Destroy", 3.0f);
 		}
 		}
 
 	public void Sparks () {
 		if (sparkSwitch == true) {
-			GameObject Sparks = Instantiate (sparks,
-				                    sparkSpawn.position,
-				                    sparkSpawn.rotation) as GameObject;
+			Instantiate (sparks, sparkSpawn.position, sparkSpawn.rotation);
 			sparkSwitch = false;
 		} else if (sparkSwitch == false) {
-			GameObject Sparks = Instantiate (sparks,
-				sparkSpawn1.position,
-				sparkSpawn1.rotation) as GameObject;
+			Instantiate (sparks, sparkSpawn1.position, sparkSpawn1.rotation);
 			sparkSwitch = true;
 		}
 	}

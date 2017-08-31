@@ -63,7 +63,7 @@ public class MonsterOrc : Unit
 			isWalking = true;
 		} else if (!this.startMovement) {
 			isWalking = false;
-		} 
+		}
 
 		if (Input.GetKeyDown ("d")) {
 			isDancing = true;
@@ -76,12 +76,24 @@ public class MonsterOrc : Unit
 
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag == "Trap") {
+			SlowWalk ();
 			SpawnParticle ();
+			Invoke ("StartWalkAgain", 0.5f);
+		} else if (other.gameObject.tag == "RockTrap") {
+			SlowWalk ();
+			Invoke ("SpawnParticle", 0.35f);
+			Invoke ("StartWalkAgain", 0.5f);
 		}
 	}
+
+	void SlowWalk () {
+		Time.timeScale = (0.15f);
+	}
+
+	void StartWalkAgain () {
+		Time.timeScale = (1.0f);
+	}
 	void SpawnParticle () {
-		GameObject HP = Instantiate (hpParticle,
-			hpParticleSpawn.position,
-			hpParticleSpawn.rotation) as GameObject;
+		Instantiate (hpParticle, hpParticleSpawn.position, hpParticleSpawn.rotation);
 	}
 }

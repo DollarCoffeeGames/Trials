@@ -28,11 +28,7 @@ public class Ftrap : Buildable
 		FClear ();
 		Fire.Stop ();
 	}
-		
-	void Update ()
-	{
-	}
-        
+		 
 	public void testTurnCount (int turn)
 	{
 		if (turn - currentTurn > 3) {
@@ -72,15 +68,14 @@ public class Ftrap : Buildable
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from fire trap");
 			Fire.Play ();
-		}
-	}
-	public void OnTriggerExit (Collider c)
-	{
-		if (c.gameObject.CompareTag ("Unit")) {
-			Fire.Stop ();
-			Invoke ("FClear" , 0.5f);
+			Invoke ("FStop", 1.0f);
+			Invoke ("FClear" , 2.9f);
 			Invoke ("Destroy", 3.0f);
 		}
+	}
+
+	void FStop () {
+		Fire.Stop ();
 	}
 
 	public void FClear ()

@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Traps/Floor_Spikes.cs">
+    <Files>
+      <File FileName="Assets/Script/Traps/Floor_Saw.cs" Line="48" Column="78" />
+      <File FileName="Assets/Script/Traps/RockTrap.cs" Line="40" Column="80" />
+      <File FileName="Assets/Script/Traps/Floor_Spikes.cs" Line="46" Column="28" />
+      <File FileName="Assets/Script/Test/MonsterOrc.cs" Line="87" Column="24" />
+      <File FileName="Assets/Script/Traps/Swing_Axe.cs" Line="56" Column="87" />
+      <File FileName="Assets/Script/Traps/Ftrap.cs" Line="72" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
