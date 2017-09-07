@@ -15,6 +15,9 @@ public class Ftrap : Buildable
 	[SerializeField]
 	Material notAllowed;
 
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
 	bool curStatus = true;
 
@@ -23,6 +26,11 @@ public class Ftrap : Buildable
 	public int resoureSpent;
 
 	void Start () {
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
         turnMaster.instance.setPlayerResource(this.playerId, 25);
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
 		FClear ();
@@ -68,9 +76,9 @@ public class Ftrap : Buildable
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from fire trap");
 			Fire.Play ();
-			Invoke ("FStop", 1.0f);
-			Invoke ("FClear" , 2.9f);
-			Invoke ("Destroy", 3.0f);
+			Invoke ("FStop", 0.4f);
+			Invoke ("FClear" , 1.8f);
+			Invoke ("Destroy", 1.5f);
 		}
 	}
 
@@ -86,6 +94,11 @@ public class Ftrap : Buildable
 	void Destroy () {
 		Destroy (gameObject);
 	}
+
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
+	}
+
     override public void SelectUnit()
     {
     }

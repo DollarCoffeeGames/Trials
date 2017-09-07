@@ -12,7 +12,12 @@ public class MonsterOrc : Unit
 	public GameObject hpParticle;
 	public Transform hpParticleSpawn;
 
-    void OnDrawGizmos()
+	void Start () {
+		isDancing = false;
+		isWalking = false;
+	}
+    
+	void OnDrawGizmos()
     {
         if (this.shortPath.Count > 0)
         {
@@ -46,17 +51,11 @@ public class MonsterOrc : Unit
         }
     }
 
-    void Start()
-    {
-		isWalking = false;
-		isDancing = false;
-    }
-
     void Update()
     {
-
 		anim.SetBool ("isWalking", isWalking);
 		anim.SetBool ("isDancing", isDancing);
+
 
 		if (this.startMovement) {
 			this.Move ();
@@ -65,24 +64,36 @@ public class MonsterOrc : Unit
 			isWalking = false;
 		}
 
-		if (Input.GetKeyDown ("d")) {
+		if (Input.GetKeyDown (KeyCode.Z)) {
 			isDancing = true;
 		}
-		if (Input.GetKeyDown ("f")) {
+		if (Input.GetKeyDown (KeyCode.X)) {
 			isDancing = false;
 		} 
 	}
 
-
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag == "Trap") {
-			SlowWalk ();
 			SpawnParticle ();
-			Invoke ("StartWalkAgain", 0.5f);
-		} else if (other.gameObject.tag == "RockTrap") {
+		}  else if (other.gameObject.tag == "Boulder") {
+			SpawnParticle ();
+		}
+	}
+
+	void OnTriggerStay (Collider other) {
+		if (other.gameObject.tag == "Trap") {
 			SlowWalk ();
-			Invoke ("SpawnParticle", 0.35f);
-			Invoke ("StartWalkAgain", 0.5f);
+		} else if (other.gameObject.tag == "RockTrap") {
+			SlowerWalk ();			
+		} 
+	}
+
+
+	void OnTriggerExit (Collider other) {
+		if (other.gameObject.tag == "Trap") {
+			StartWalkAgain ();
+		} else if (other.gameObject.tag == "RockTrap") {
+			StartWalkAgain ();
 		}
 	}
 
@@ -90,9 +101,14 @@ public class MonsterOrc : Unit
 		Time.timeScale = (0.15f);
 	}
 
+	void SlowerWalk () {
+		Time.timeScale = (0.1f);
+	}
+
 	void StartWalkAgain () {
 		Time.timeScale = (1.0f);
 	}
+
 	void SpawnParticle () {
 		Instantiate (hpParticle, hpParticleSpawn.position, hpParticleSpawn.rotation);
 	}

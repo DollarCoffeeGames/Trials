@@ -26,6 +26,9 @@ public class Floor_Saw : Buildable
 	public float speed = 300f;
 		
 	public GameObject saw;
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
 	public bool startspin; 
 	public bool sparkSwitch;
@@ -35,6 +38,13 @@ public class Floor_Saw : Buildable
 
 	void Start () 
     {
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
+
+
 		speed = 300f;
 		startspin = false;
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
@@ -45,7 +55,7 @@ public class Floor_Saw : Buildable
 	{
 		if (startspin) 
         {
-			saw.transform.Rotate (Vector3.forward, speed * Time.fixedUnscaledDeltaTime);
+			saw.transform.Rotate (Vector3.forward, speed);
 		}
 	}
 		public void testTurnCount (int turn)
@@ -87,7 +97,7 @@ public class Floor_Saw : Buildable
 			Debug.Log ("Monster is taking damage from saw trap");
 			startspin = true;
 			Sparks ();
-			Invoke ("Destroy", 3.2f);
+			Invoke ("Destroy", 1.5f);
 		}
 		}
 		public void OnTriggerExit (Collider c)
@@ -109,6 +119,10 @@ public class Floor_Saw : Buildable
 
 	void Destroy () {
 		Destroy (gameObject);
+	}
+
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
 	}
 
     override public void SelectUnit()

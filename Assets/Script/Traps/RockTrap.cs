@@ -24,6 +24,9 @@ public class RockTrap : Buildable {
 
 	public int resoureSpent;
 
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 	public GameObject block;
 	public GameObject rock;
 
@@ -31,6 +34,11 @@ public class RockTrap : Buildable {
 
 	void Start () 
 	{
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
 		startroll = false;
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
 		turnMaster.instance.setPlayerResource(this.playerId, resoureSpent);
@@ -89,6 +97,10 @@ public class RockTrap : Buildable {
 		
 	void Destroy () {
 		Destroy (gameObject);
+	}
+
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
 	}
 
 	override public void SelectUnit()

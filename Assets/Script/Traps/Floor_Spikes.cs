@@ -23,6 +23,9 @@ public class Floor_Spikes : Buildable {
 	public int resoureSpent;
 
 	public float speed;
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
 	public GameObject spike;
 	public int i;
@@ -34,6 +37,11 @@ public class Floor_Spikes : Buildable {
 
 	void Start () 
 	{
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
 		speed = 0.1f;
 		startSpike = false;
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
@@ -93,7 +101,7 @@ public class Floor_Spikes : Buildable {
 			Debug.Log ("Monster is taking damage from spike trap");
 			startSpike = true;
 			Sparks ();
-			Invoke ("Destroy", 0.5f);
+			Invoke ("Destroy", 1.5f);
 		}
 	}
 
@@ -110,8 +118,11 @@ public class Floor_Spikes : Buildable {
 	void Destroy () {
 		Destroy (gameObject);
 	}
-
+		
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
+	}
 	override public void SelectUnit()
 	{
 	}
-	}
+}

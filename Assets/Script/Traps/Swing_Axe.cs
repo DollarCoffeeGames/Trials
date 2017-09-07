@@ -21,6 +21,9 @@ public class Swing_Axe : Buildable {
 	public int resoureSpent;
 
 	bool swingOn;
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
 	float speed; 
 
@@ -32,6 +35,11 @@ public class Swing_Axe : Buildable {
 
 	// Use this for initialization
 	void Start () {
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
 		turnMaster.instance.setPlayerResource(this.playerId, resoureSpent);
 		swingOn = false;
@@ -50,10 +58,10 @@ public class Swing_Axe : Buildable {
 
 		if (swingOn) {
 			if (swingLeft) {
-				m_moveAxe.transform.Rotate (Vector3.forward * speed * Time.fixedUnscaledDeltaTime);
+				m_moveAxe.transform.Rotate (Vector3.forward * speed * Time.unscaledDeltaTime);
 			}
 			if (!swingLeft) {
-				m_moveAxe.transform.Rotate (Vector3.forward * -speed * Time.fixedUnscaledDeltaTime);
+				m_moveAxe.transform.Rotate (Vector3.forward * -speed * Time.unscaledDeltaTime);
 			}
 		} 
 	}
@@ -92,7 +100,7 @@ public class Swing_Axe : Buildable {
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from swinging axe trap");
 			swingOn = true;
-			Invoke ("Destroy", 3.2f);
+			Invoke ("Destroy", 1.5f);
 		}
 	}
 		
@@ -100,7 +108,9 @@ public class Swing_Axe : Buildable {
 		Destroy (gameObject);
 	}
 
-
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
+	}
 
 	override public void SelectUnit()
 	{

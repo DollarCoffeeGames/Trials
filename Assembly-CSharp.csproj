@@ -95,6 +95,7 @@
      <Compile Include="Assets\Script\Players\PlayerActions.cs" />
      <Compile Include="Assets\Script\Players\PlayerTemplate.cs" />
      <Compile Include="Assets\Script\Test\MonsterOrc.cs" />
+     <Compile Include="Assets\Script\Test\TempCamera.cs" />
      <Compile Include="Assets\Script\Test\UITestManager.cs" />
      <Compile Include="Assets\Script\Traps\Dest_Particle.cs" />
      <Compile Include="Assets\Script\Traps\Floor_Saw.cs" />
