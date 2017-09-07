@@ -25,6 +25,9 @@ public class GridUIMaster : MonoBehaviour
     [SerializeField]
     public GameObject desNodeUI;
 
+    [Header("Particles")]
+    public ParticleSystem spawnParticle;
+
     [Header("PathLine")]
     [SerializeField]
     public LineRenderer pathRender;
