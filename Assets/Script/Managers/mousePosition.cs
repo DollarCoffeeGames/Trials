@@ -61,10 +61,16 @@ public class mousePosition : MonoBehaviour
                     {
                         GameObject newTrap = Instantiate(trapPrefab[currentTrapNum], currentTrap.transform.position, currentTrap.transform.rotation);
 
-                        if (!newTrap.transform.CompareTag("Unit"))
-                        {
-                            GridMaster.instance.setTrap(currentTrap.transform.position, newTrap, this.lastTrapSize);
-                        }
+						if (!newTrap.transform.CompareTag("Unit"))
+						{
+							GridMaster.instance.setTrap(currentTrap.transform.position, newTrap, this.lastTrapSize);
+						}
+						else
+						{
+							Unit tempUnit = newTrap.GetComponent<Unit>();
+							GridMaster.instance.setUnit(currentTrap.transform.position, tempUnit);
+
+						}
 
                         newTrap.GetComponent<Buildable>().playerId = turnMaster.instance.currentPlayerId();
 

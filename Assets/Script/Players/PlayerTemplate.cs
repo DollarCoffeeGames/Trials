@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class PlayerTemplate : MonoBehaviour {
 
-    protected int playerId;
+    public int playerId;
 
     [SerializeField]
     public int resourceAmount = 0;

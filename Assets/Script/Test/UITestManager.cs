@@ -70,9 +70,4 @@ public class UITestManager : MonoBehaviour
 
         return tempUI;
     }
-
-	void Update ()
-	{
-		//this.resourceLbl.text = turnMaster.instance.resource.ToString();
-	}
 }

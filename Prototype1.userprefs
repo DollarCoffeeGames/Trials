@@ -1,16 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Managers/turnMaster.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/AI/AILeader.cs">
     <Files>
-      <File FileName="Assets/Script/Players/PlayerActions.cs" Line="20" Column="32" />
-      <File FileName="Assets/Script/Buildable/Unit.cs" Line="72" Column="1" />
-      <File FileName="Assets/Script/Pathfinder/Pathfinding.cs" Line="80" Column="1" />
-      <File FileName="Assets/Script/Pathfinder/PathfindingMaster.cs" Line="56" Column="1" />
-      <File FileName="Assets/Script/Managers/GridUIMaster.cs" Line="86" Column="1" />
-      <File FileName="Assets/Script/Test/MonsterOrc.cs" Line="51" Column="1" />
-      <File FileName="Assets/Script/Managers/turnMaster.cs" Line="84" Column="1" />
-      <File FileName="Assets/Script/Managers/mousePosition.cs" Line="122" Column="25" />
-      <File FileName="Assets/Script/Buildable/Buildable.cs" Line="34" Column="35" />
+      <File FileName="Assets/Script/AI/AIManager.cs" Line="217" Column="69" />
+      <File FileName="Assets/Script/Buildable/Unit.cs" Line="16" Column="16" />
+      <File FileName="Assets/Script/Players/PlayerActions.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Pathfinder/Pathfinding.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Pathfinder/PathfindingMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Managers/GridUIMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Test/MonsterOrc.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Managers/turnMaster.cs" Line="83" Column="84" />
+      <File FileName="Assets/Script/Managers/mousePosition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Buildable/Buildable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/AI/AILeader.cs" Line="39" Column="21" />
+      <File FileName="Assets/Script/Test/UITestManager.cs" Line="72" Column="6" />
+      <File FileName="Assets/Script/Players/PlayerTemplate.cs" Line="7" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

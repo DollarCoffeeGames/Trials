@@ -7,17 +7,30 @@ using gridMaster;
 
 public abstract class Unit : Buildable 
 {
+    public enum unitState
+    {
+        Idle,
+        Running,
+        Attacking,
+        Damage,
+        Dancing
+    }
+
+    public unitState currState;
+
     // Contains the current position (In Unity coordinates) of this unit
     protected Vector3 currentPos;
     // Contains the current Board Node this unit is occupying
-    protected Node currentNode;
+    public Node currentNode;
     // Contains the next Board Node this unit will move to
     protected Node nextNode;
     // Contains the path this unit will take when moving
     protected Stack<Node> path = null;
     // Contains the short path using path as base
+    //[HideInInspector]
     public List<Node> shortPath = new List<Node>();
     // List of all walkable nodes
+    //[HideInInspector]
     public List<Node> walkableNodes = new List<Node>();
     // Contains the basic attack value of this unit
     protected int Attack;
@@ -66,6 +79,7 @@ public abstract class Unit : Buildable
 
     public virtual void StartMove()
     {
+        this.currentNode.removeUnit();
         this.updateNode = false;
         this.indexPath = 0;
         this.currentNode = this.shortPath[0];
@@ -93,6 +107,9 @@ public abstract class Unit : Buildable
             else
             {
                 this.startMovement = false;
+				this.currState = unitState.Idle;
+                this.currentNode.setUnit(this);
+				return;
             }
 
             if(this.targetNode != null)
@@ -133,26 +150,28 @@ public abstract class Unit : Buildable
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * this.Speed);
         }
 
+		this.currState = unitState.Running;
+
         transform.position = targetPosition;
 
     }
 
     // Get/Set methods
-    public void SetPath(Stack<Node> path)
+    virtual public void SetPath(Stack<Node> path)
     {
         this.path = path;
         this.CreateShortPath();
         GridUIMaster.instance.drawLine(this.shortPath);
     }
 
-    public void SetWalkablePath(List<Node> nodes)
+    virtual public void SetWalkablePath(List<Node> nodes)
     {
         this.walkableNodes = nodes;
         GridUIMaster.instance.clearGrid();
         GridUIMaster.instance.highLightTile(this.walkableNodes);
     }
 
-    public void CreateShortPath()
+    virtual public void CreateShortPath()
     {
         this.shortPath.Clear();
 

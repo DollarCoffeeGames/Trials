@@ -227,7 +227,7 @@ namespace gridMaster
                 return path;
             }
 
-            private List<Node> GetNeighbours(Node currentNode, bool checkY)
+            public List<Node> GetNeighbours(Node currentNode, bool checkY)
             {
 
                 List <Node> retList = new List<Node>();

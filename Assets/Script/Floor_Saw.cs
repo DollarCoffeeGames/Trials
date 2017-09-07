@@ -99,9 +99,8 @@ public class Floor_Saw : Buildable
 
 	public void Sparks () {
 		if (m_sparkSwitch == true) {
-			GameObject sparks = Instantiate (m_sparks,
-				                    m_sparkSpawn.position,
-				                    m_sparkSpawn.rotation) as GameObject;
+			Instantiate (m_sparks, m_sparkSpawn.position, m_sparkSpawn.rotation);
+
 			m_sparkSwitch = false;
 		} else if (m_sparkSwitch == false) {
 			GameObject sparks = Instantiate (m_sparks,

@@ -76,11 +76,14 @@ namespace gridMaster
 
         int currentColumn;
 
-
-
         List<List<Node>> Grid;
 
         List<List<Node>> mapGrid;
+
+		[HideInInspector]
+        public List<Node> spawnList;
+
+        public List<List<Node>> conquerList;
 
         public int maxSize
         {
@@ -91,7 +94,7 @@ namespace gridMaster
         }
 
     	// Use this for initialization
-    	void Start () 
+    	void Awake () 
         {
             //check if GameManager instance already exists in Scene
             if(instance)
@@ -103,9 +106,25 @@ namespace gridMaster
             {
                 //assign GameManager to variable "_instance"
                 instance = this;
-            }
+			}
 
-            this.Grid = new List<List<Node>>();
+			this.mapGrid = new List<List<Node>>();
+			this.spawnList = new List<Node> ();
+            this.conquerList = new List<List<Node>>();
+
+			Node tempNode = new Node ();
+
+			for (int countY = 0; countY < columnCount.y; countY++) 
+			{
+				this.mapGrid.Add(new List<Node>());
+
+				for (int countX = 0; countX < columnCount.x; countX++) 
+				{
+					this.mapGrid [countY].Add (tempNode);
+				}
+			}
+
+            /*this.Grid = new List<List<Node>>();
 
             for (int countY = 0; countY < columnCount.y; countY++)
             {
@@ -130,11 +149,11 @@ namespace gridMaster
                 }
             }
 
-            loadFileMap();
+            loadFileMap();*/
     	}
     	
     	// Update is called once per frame
-    	void Update () 
+    	/*void Update () 
         {
             if (startAnimation)
             {
@@ -200,7 +219,7 @@ namespace gridMaster
             {
                 currentColumn = 0;
             }
-    	}
+    	}*/
 
         void loadFileMap()
         {
@@ -484,42 +503,28 @@ namespace gridMaster
 
         public void setTrap(Vector3 posTrap, GameObject trapObj, Vector2 size)
         {
-            Vector3 gridPos = new Vector3(Mathf.Floor(posTrap.x / columnSize.x),
-                0,
-                Mathf.Round(posTrap.z / columnSize.y));
-
-            if (gridPos.x < 0)
-            {
-                gridPos.x = 0;
-            }
-
-            if (gridPos.z < 0)
-            {
-                gridPos.z = 0;
-            }
-
-            if (gridPos.x >= columnCount.x)
-            {
-                gridPos.x = (columnCount.x - 1);
-            }
-
-            if (gridPos.z >= columnCount.y)
-            {
-                gridPos.z = (columnCount.y - 1);
-            }
+			Node tempNode = this.GetNodeByPosition(posTrap);
 
             //check for objects in all nodes
             for (int countY = 0; countY < size.y; countY++)
             {
                 for (int countX = 0; countX < size.x; countX++)
                 {
-                    this.mapGrid[(int)gridPos.z + countY][(int)gridPos.x + countX].setTrap(trapObj, false);
+					this.mapGrid[(int)tempNode.gridPositionZ + countY][(int)tempNode.gridPositionX + countX].setTrap(trapObj, false);
                 }
             }
 
+			tempNode.setTrap(trapObj, true);
+		}
 
-            this.mapGrid[(int)gridPos.z][(int)gridPos.x].setTrap(trapObj, true);
-        }
+		public void setUnit(Vector3 posTrap, Unit unitObj)
+		{
+			Node tempNode = this.GetNodeByPosition(posTrap);
+
+			tempNode.setUnit(unitObj);
+
+			unitObj.currentNode = tempNode;
+		}
 
         public Node GetNode(int positionX, int positionY, int positionZ)
         {
@@ -544,7 +549,12 @@ namespace gridMaster
         public Node GetNode(float positionX, float positionY, float positionZ)
         {
             return this.GetNode((int)positionX, (int)positionY, (int) positionZ);
-        }
+		}
+
+		public Node GetNode(Vector3 position)
+		{
+			return this.GetNodeByPosition(position);
+		}
 
         public Node GetNodeByPosition(Vector3 posOriginal)
         {
@@ -573,6 +583,43 @@ namespace gridMaster
             }
 
             return this.mapGrid[(int)gridPos.z][(int)gridPos.x];
+        }
+
+		public void addNode(Node node)
+		{
+			this.mapGrid [(int)node.gridPositionZ] [(int)node.gridPositionX] = node;
+
+            if (node.tags.IndexOf("Spawn") != -1)
+            {
+                this.spawnList.Add(node);
+            }
+            else if (node.tags.IndexOf("Conquer") != -1)
+            {
+                this.groupConquerNode(node);
+            }
+		}
+
+        void groupConquerNode(Node newNode)
+        {
+
+            Debug.Log(this.conquerList.Count, newNode.gameObject);
+
+            for(int count = 0; count < this.conquerList.Count; count++)
+            {
+                for (int countNode = 0; countNode < this.conquerList[count].Count; countNode++)
+                {
+                    if (this.conquerList[count][countNode].isConnected(newNode) && this.conquerList[count].IndexOf(newNode) == -1)
+                    {
+                        this.conquerList[count].Add((newNode));
+                        return;
+                    }
+                }
+            }
+
+            this.conquerList.Add(new List<Node>());
+
+            this.conquerList[this.conquerList.Count - 1].Add(newNode);
+
         }
 
         /*void BlurPenaltyMap(int blurSize)

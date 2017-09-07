@@ -91,6 +91,15 @@ namespace gridMaster
 
             public int Depth = 0;
 
+
+			[Header("Unit")]
+			public Unit currUnit;
+
+			[Header("Tag List")]
+			public List<string> tags;
+
+			[Header("Block Direction")]
+
             public bool North;
             public bool South;
             public bool East;
@@ -158,7 +167,22 @@ namespace gridMaster
                 {   
                     this.Trap.transform.SetParent(this.Tile.transform);
                 }
-            }
+			}
+
+			public void setUnit(Unit unitObj)
+			{
+				this.currUnit = unitObj;
+			}
+
+			public void removeUnit()
+			{
+				this.currUnit = null;
+			}
+
+			public void clearUnit()
+			{
+				this.currUnit = null;
+			}
 
             public bool isConnected(Node parentNode)
             {
@@ -215,9 +239,24 @@ namespace gridMaster
                         } 
                     }
                 }
+
+                if(this.gridPositionX < parentNode.gridPositionX - 1 || this.gridPositionX > parentNode.gridPositionX + 1)
+                {
+                    return false;
+                }
+
+                if(this.gridPositionZ < parentNode.gridPositionZ - 1 || this.gridPositionZ > parentNode.gridPositionZ + 1)
+                {
+                    return false;
+                }
                     
                 return true;
             }
+
+			public void Awake()
+			{
+				GridMaster.instance.addNode (this);
+			}
         }
     }
 }

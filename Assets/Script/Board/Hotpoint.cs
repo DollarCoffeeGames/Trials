@@ -10,14 +10,30 @@ namespace gridMaster
         [System.Serializable]
         public class Hotpoint 
         {
-            [SerializeField]
-            bool aiConquered = false;
+            public bool aiConquered = false;
 
-            [SerializeField]
-            Vector3 startPos;
+            public List<Node> m_conquerGroup;
 
-            [SerializeField]
-            Vector2 size;
+            public List<Node> conquerGroup
+            {
+                get
+                {
+                    return this.m_conquerGroup;
+                }
+                set
+                {
+                    this.m_conquerGroup = value;
+                    this.conquerRemaining = new List<Node>(value);
+                }
+            }
+
+            public List<Node> conquerRemaining;
+
+            public Hotpoint()
+            {
+                this.conquerGroup     = new List<Node>();
+                this.conquerRemaining = new List<Node>();
+            }
         }
     }
 }
