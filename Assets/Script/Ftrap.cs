@@ -15,6 +15,9 @@ public class Ftrap : Buildable
 	[SerializeField]
 	Material notAllowed;
 
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
 	bool curStatus = true;
 
@@ -23,16 +26,17 @@ public class Ftrap : Buildable
 	public int resoureSpent;
 
 	void Start () {
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
         turnMaster.instance.setPlayerResource(this.playerId, 25);
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
 		FClear ();
 		Fire.Stop ();
 	}
-		
-	void Update ()
-	{
-	}
-        
+		 
 	public void testTurnCount (int turn)
 	{
 		if (turn - currentTurn > 3) {
@@ -67,25 +71,33 @@ public class Ftrap : Buildable
 
 	public void OnTriggerEnter (Collider c)
 	{
-		if (c.gameObject.CompareTag ("Monster")) {
+		if (c.gameObject.CompareTag ("Unit")) {
 			//apply damage to monster 
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from fire trap");
 			Fire.Play ();
+			Invoke ("FStop", 0.4f);
+			Invoke ("FClear" , 1.8f);
+			Invoke ("Destroy", 1.5f);
 		}
 	}
-	public void OnTriggerExit (Collider c)
-	{
-		if (c.gameObject.CompareTag ("Monster")) {
-			Fire.Stop ();
-			Invoke ("FClear" , 0.5f);
-		}
+
+	void FStop () {
+		Fire.Stop ();
 	}
 
 	public void FClear ()
     {
 		Fire.Clear ();
     }
+
+	void Destroy () {
+		Destroy (gameObject);
+	}
+
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
+	}
 
     override public void SelectUnit()
     {

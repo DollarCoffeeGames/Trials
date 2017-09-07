@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class trap : Buildable 
 {
-	Animator anim;
 
     [SerializeField]
     Renderer[] trapRenders;
@@ -21,21 +20,17 @@ public class trap : Buildable
     bool curStatus = true;
 
 	int currentTurn;
-	bool playAnim;
 
 	public int resoureSpent;
 
 	void Start () {
-		anim = GetComponent<Animator>();
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
 		//turnMaster.instance.resource -= resoureSpent;
-		playAnim = false;
 	}
 
 
 	void Update ()
 	{
-		anim.SetBool ("Play", playAnim);
 
 	}
 
@@ -78,13 +73,11 @@ public class trap : Buildable
 		//apply damage to monster 
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from trap");
-			playAnim = true;
 		}
 	}
 	public void OnTriggerExit (Collider c)
 	{
 		if (c.gameObject.CompareTag ("Monster")) {
-			playAnim = false;
 		}
     }
 

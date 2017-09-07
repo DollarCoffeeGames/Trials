@@ -68,8 +68,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4801527053333988}
-  - component: {fileID: 65062213424367892}
-  - component: {fileID: 114516010165886528}
   m_Layer: 0
   m_Name: FloorSaw
   m_TagString: Untagged
@@ -102,9 +100,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4922763665719772}
+  - component: {fileID: 114183708503646768}
+  - component: {fileID: 65375600900086450}
   m_Layer: 0
   m_Name: FloorSaw
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1735859506150008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.86132, y: 32.65, z: 16.111448}
+  m_LocalPosition: {x: 38.25518, y: 0.8660202, z: -5.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4801527053333988}
@@ -266,7 +266,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dcd37154553024d198b0d28ceb6abfa4, type: 2}
+  - {fileID: 2100000, guid: 018d865b7ed29304b99809ad89530f70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -338,38 +338,40 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598888220742488}
   m_Mesh: {fileID: 4300002, guid: 70f3c873e60924db0a73e56471e50bdc, type: 3}
---- !u!65 &65062213424367892
+--- !u!65 &65375600900086450
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409577679620650}
+  m_GameObject: {fileID: 1735859506150008}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1.5, z: 3}
-  m_Center: {x: -9, y: 0.75, z: -4.25}
---- !u!114 &114516010165886528
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &114183708503646768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409577679620650}
+  m_GameObject: {fileID: 1735859506150008}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a3e979987eb495a8ea54729bcbfcb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
+  actionDone: 0
+  size: {x: 1, y: 1}
   trapRenders: []
   allowed: {fileID: 0}
   notAllowed: {fileID: 0}
-  size: {x: 1, y: 1}
-  resoureSpent: 20
-  m_speed: 300
-  m_saw: {fileID: 1031274841623060}
-  m_startspin: 0
-  m_sparkSwitch: 0
-  m_sparks: {fileID: 1797920832918512, guid: b24d089432ff645a5af7ebc6ec4068ab, type: 2}
-  m_sparkSpawn: {fileID: 4196585842254242}
-  m_sparkSpawn1: {fileID: 4920450552218270}
+  resoureSpent: 0
+  speed: 300
+  saw: {fileID: 1031274841623060}
+  startspin: 0
+  sparkSwitch: 0
+  sparks: {fileID: 1461934738625088, guid: b24d089432ff645a5af7ebc6ec4068ab, type: 2}
+  sparkSpawn: {fileID: 4196585842254242}
+  sparkSpawn1: {fileID: 4920450552218270}

@@ -158,6 +158,7 @@ namespace AI
 
         public override void startTurn()
         {
+
             this.resourceAmount = turnMaster.instance.playerResourceAmount;
 
             this.unitsThisTurn = 0;
@@ -246,9 +247,14 @@ namespace AI
                 this.conquerList = GridMaster.instance.conquerList;
             }
 
+            if (this.conquerList.Count <= 0)
+            {
+                return;
+            }
+
             for (int count = 0; count < this.leaders.Count; count++)
             {
-                if (this.leaders[count].conquer.conquerGroup.Count <= 0)
+                if (this.leaders[count].leader != null && this.leaders[count].conquer.conquerGroup.Count <= 0)
                 {
                     float prevDist = -1;
 

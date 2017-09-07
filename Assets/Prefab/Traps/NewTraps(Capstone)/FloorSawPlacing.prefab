@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4773281680550578}
+  - component: {fileID: 114553051858528484}
   m_Layer: 0
   m_Name: FloorSawPlacing
   m_TagString: Untagged
@@ -69,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4766254115055712}
   - component: {fileID: 65445072833497586}
-  - component: {fileID: 114807728328683508}
   m_Layer: 0
   m_Name: FloorSawPlacing
   m_TagString: Untagged
@@ -155,8 +155,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1769968905855692}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1224, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4766254115055712}
@@ -292,24 +292,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.5, z: 3}
   m_Center: {x: -9, y: 0.75, z: -4.25}
---- !u!114 &114807728328683508
+--- !u!114 &114553051858528484
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1909596120929754}
+  m_GameObject: {fileID: 1769968905855692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a3e979987eb495a8ea54729bcbfcb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7828a165fcebf49b598b378ce44d8389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapRenders:
-  - {fileID: 23070323262199826}
-  - {fileID: 23080644098039026}
-  - {fileID: 23846266086655152}
-  allowed: {fileID: 2100000, guid: d718b83d1e24540779a6a4ed9ad9d7fa, type: 2}
-  notAllowed: {fileID: 2100000, guid: 36fadb55654d849deb7d6a449673314e, type: 2}
+  playerId: 0
+  actionDone: 0
   size: {x: 1, y: 1}
+  trapRenders: []
+  allowed: {fileID: 0}
+  notAllowed: {fileID: 0}
   resoureSpent: 0
-  m_speed: 300
-  m_saw: {fileID: 1914474527232560}

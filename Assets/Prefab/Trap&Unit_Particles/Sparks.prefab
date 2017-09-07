@@ -9,18 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1797920832918512}
+  m_RootGameObject: {fileID: 1461934738625088}
   m_IsPrefabParent: 1
---- !u!1 &1797920832918512
+--- !u!1 &1461934738625088
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4036369893010220}
-  - component: {fileID: 198006179472382520}
-  - component: {fileID: 199168411048655942}
+  - component: {fileID: 4015086360869688}
+  - component: {fileID: 198166083156208142}
+  - component: {fileID: 199835506305952262}
+  - component: {fileID: 114024779719234808}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -28,32 +29,43 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4036369893010220
+--- !u!4 &4015086360869688
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1797920832918512}
+  m_GameObject: {fileID: 1461934738625088}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 47.52, y: 1.58, z: 26.121422}
+  m_LocalPosition: {x: 40.276905, y: 13.130169, z: 14.339256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!198 &198006179472382520
+--- !u!114 &114024779719234808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1461934738625088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c523b16c91bf476e8e162cf05a76b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!198 &198166083156208142
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1797920832918512}
+  m_GameObject: {fileID: 1461934738625088}
   serializedVersion: 5
   lengthInSec: 2
   simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  useUnscaledTime: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
@@ -100,7 +112,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1268186127
+  randomSeed: 1483078658
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3219,13 +3231,13 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199168411048655942
+--- !u!199 &199835506305952262
 ParticleSystemRenderer:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1797920832918512}
+  m_GameObject: {fileID: 1461934738625088}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

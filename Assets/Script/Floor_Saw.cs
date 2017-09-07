@@ -13,8 +13,8 @@ public class Floor_Saw : Buildable
 	[SerializeField]
 	Material notAllowed;
 
-	[SerializeField]
-	public Vector2 size = Vector2.one;
+//	[SerializeField]
+//	public Vector2 size = Vector2.one;
 
 	bool curStatus = true;
 
@@ -23,29 +23,39 @@ public class Floor_Saw : Buildable
 
 	public int resoureSpent;
 
-	public float m_speed = 300f;
+	public float speed = 300f;
 		
-	public GameObject m_saw;
+	public GameObject saw;
+	GameObject TempPart;
+	Vector3 oldPos;
+	Vector3 trapPos;
 
-	public bool m_startspin; 
-	public bool m_sparkSwitch;
-	public GameObject m_sparks;
-	public Transform m_sparkSpawn;
-	public Transform m_sparkSpawn1;
+	public bool startspin; 
+	public bool sparkSwitch;
+	public GameObject sparks;
+	public Transform sparkSpawn;
+	public Transform sparkSpawn1;
 
 	void Start () 
     {
-		m_speed = 300f;
-		m_startspin = false;
+		TempPart = GameObject.Find ("TempTrapSpawnPart");
+		oldPos = TempPart.transform.position;
+		trapPos = gameObject.transform.position;
+		TempPart.transform.position = trapPos;
+		Invoke ("MovePartBack", 0.5f);
+
+
+		speed = 300f;
+		startspin = false;
 		currentTurn = turnMaster.instance.registerTurnEvent (testTurnCount);
         turnMaster.instance.setPlayerResource(this.playerId, resoureSpent);
 	}
 
 	void Update ()
 	{
-		if (m_startspin) 
+		if (startspin) 
         {
-			m_saw.transform.Rotate (Vector3.forward, m_speed * Time.deltaTime);
+			saw.transform.Rotate (Vector3.forward, speed);
 		}
 	}
 		public void testTurnCount (int turn)
@@ -81,33 +91,38 @@ public class Floor_Saw : Buildable
 
 		public void OnTriggerEnter (Collider c)
 		{
-		if (c.gameObject.CompareTag ("Monster")) {
+		if (c.gameObject.CompareTag ("Unit")) {
 			//apply damage to monster 
 			//should be doing things here
 			Debug.Log ("Monster is taking damage from saw trap");
-			m_startspin = true;
+			startspin = true;
 			Sparks ();
+			Invoke ("Destroy", 1.5f);
 		}
 		}
 		public void OnTriggerExit (Collider c)
 		{
-			if (c.gameObject.CompareTag ("Monster")) {
-			m_startspin = false;
-			Sparks ();		
+			if (c.gameObject.CompareTag ("Unit")) {
+			Sparks ();	
 		}
 		}
 
 	public void Sparks () {
-		if (m_sparkSwitch == true) {
-			Instantiate (m_sparks, m_sparkSpawn.position, m_sparkSpawn.rotation);
-
-			m_sparkSwitch = false;
-		} else if (m_sparkSwitch == false) {
-			GameObject sparks = Instantiate (m_sparks,
-				m_sparkSpawn1.position,
-				m_sparkSpawn1.rotation) as GameObject;
-			m_sparkSwitch = true;
+		if (sparkSwitch == true) {
+			Instantiate (sparks, sparkSpawn.position, sparkSpawn.rotation);
+			sparkSwitch = false;
+		} else if (sparkSwitch == false) {
+			Instantiate (sparks, sparkSpawn1.position, sparkSpawn1.rotation);
+			sparkSwitch = true;
 		}
+	}
+
+	void Destroy () {
+		Destroy (gameObject);
+	}
+
+	void MovePartBack () {
+		TempPart.transform.position = oldPos;
 	}
 
     override public void SelectUnit()
