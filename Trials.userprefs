@@ -1,16 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Traps/RockTrap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Test/MonsterOrc.cs">
     <Files>
-      <File FileName="Assets/Script/Traps/Floor_Spikes.cs" Line="99" Column="2" />
-      <File FileName="Assets/Script/Traps/Floor_Saw.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Traps/RockTrap.cs" Line="86" Column="26" />
-      <File FileName="Assets/Script/Test/MonsterOrc.cs" Line="84" Column="32" />
-      <File FileName="Assets/Script/Traps/Swing_Axe.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Traps/Ftrap.cs" Line="1" Column="1" />
-      <File FileName="Assets/3rd Party/HPParticle/Scripts/HPParticleScript.cs" Line="23" Column="65" />
-      <File FileName="Assets/3rd Party/HPParticle/Scripts/AlwaysFace.cs" Line="24" Column="39" />
+      <File FileName="Assets/Script/Traps/Swing_Axe.cs" Line="42" Column="33" />
+      <File FileName="Assets/Script/Traps/Floor_Spikes.cs" Line="104" Column="24" />
+      <File FileName="Assets/Script/Traps/Floor_Saw.cs" Line="45" Column="33" />
+      <File FileName="Assets/Script/Traps/RockTrap.cs" Line="105" Column="1" />
+      <File FileName="Assets/Script/Traps/Ftrap.cs" Line="101" Column="2" />
       <File FileName="Assets/Script/Traps/RockRoll.cs" Line="6" Column="2" />
+      <File FileName="Assets/Script/Test/TempCamera.cs" Line="10" Column="2" />
+      <File FileName="Assets/Script/Test/MonsterOrc.cs" Line="77" Column="1" />
+      <File FileName="Assets/Script/Managers/GridMaster.cs" Line="10" Column="2" />
+      <File FileName="Assets/Script/Managers/GridUIMaster.cs" Line="17" Column="31" />
+      <File FileName="Assets/Script/Pathfinder/Node.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
